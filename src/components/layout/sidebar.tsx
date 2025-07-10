@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
- FileText, LogOut, BookOpenText, Newspaper, Users2, GalleryVerticalEnd, MailCheck, ChevronLeft, X
+ FileText, LogOut, Newspaper, Users2, GalleryVerticalEnd, MailCheck, ChevronLeft, X
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";

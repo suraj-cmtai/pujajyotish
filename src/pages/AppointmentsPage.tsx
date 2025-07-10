@@ -1,11 +1,11 @@
-import { CrudManager } from "@/components/CrudManager";
+// import { CrudManager } from "@/components/CrudManager";
 import { appointmentFields } from "@/config/appointmentFields";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAppointments,
-  createAppointment,
+  // createAppointment,
   updateAppointment,
-  deleteAppointment,
+  // deleteAppointment,
   selectAppointments,
   selectAppointmentLoading,
   selectAppointmentError
