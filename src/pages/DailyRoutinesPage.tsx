@@ -13,7 +13,7 @@ import { toast } from "sonner";
 const rashiFields: CrudField[] = [
   { name: "name", label: "Name", type: "text", required: true },
   { name: "prediction", label: "Prediction", type: "textarea", required: true },
-  { name: "image", label: "Image", type: "image", required: false },
+  { name: "image", label: "Image", type: "image", required: false, readOnly: true },
 ];
 
 const panchangFields: CrudField[] = [
@@ -25,7 +25,7 @@ const panchangFields: CrudField[] = [
   { name: "sunset", label: "Sunset", type: "text" },
   { name: "sunrise", label: "Sunrise", type: "text" },
   { name: "vaara", label: "Vaara", type: "text" },
-  { name: "image", label: "Image", type: "image" },
+  { name: "image", label: "Image", type: "image", readOnly: true },
   { name: "yoga", label: "Yoga", type: "text" },
   {
     name: "location",
