@@ -35,8 +35,14 @@ export default function BlogsPage() {
       fields={blogFields}
       data={blogs}
       loading={isLoading}
-      onCreate={form => dispatch(createBlog(form) as any)}
-      onEdit={(id, form) => dispatch(updateBlog({ id, form }) as any)}
+      onCreate={form => {
+        const { createdAt, ...rest } = form;
+        return dispatch(createBlog(rest) as any).then(() => dispatch(fetchBlogs() as any));
+      }}
+      onEdit={(id, form) => {
+        const { createdAt, ...rest } = form;
+        return dispatch(updateBlog({ id, form: rest }) as any).then(() => dispatch(fetchBlogs() as any));
+      }}
       onDelete={id => dispatch(deleteBlog(id) as any)}
       formInitialState={{
         title: "",
