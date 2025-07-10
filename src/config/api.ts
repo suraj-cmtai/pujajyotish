@@ -1,0 +1,1 @@
+export const API_URL = "https://backend-vk.vercel.app"
