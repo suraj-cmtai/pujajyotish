@@ -7,7 +7,7 @@ import {
   updateAppointment,
   // deleteAppointment,
   selectAppointments,
-  selectAppointmentLoading,
+  // selectAppointmentLoading,
   selectAppointmentError
 } from "@/store/appointmentSlice";
 import { useEffect, useState } from "react";
@@ -19,7 +19,6 @@ import { Button } from "@/components/ui/button";
 export default function AppointmentsPage() {
   const dispatch = useDispatch();
   const appointmentsRaw = useSelector(selectAppointments);
-  const isLoading = useSelector(selectAppointmentLoading);
   const error = useSelector(selectAppointmentError);
   const [confirmDialog, setConfirmDialog] = useState<{ open: boolean; id: string | null; newStatus: string | null }>({ open: false, id: null, newStatus: null });
   const [pendingUpdate, setPendingUpdate] = useState<any>(null);
