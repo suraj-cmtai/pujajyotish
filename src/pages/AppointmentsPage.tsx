@@ -15,6 +15,7 @@ import { toast } from "sonner";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
 
 export default function AppointmentsPage() {
   const dispatch = useDispatch();
@@ -58,22 +59,20 @@ export default function AppointmentsPage() {
     <div className="p-6 space-y-6">
       <h1 className="text-2xl font-bold mb-4">Appointments</h1>
       <div className="rounded-md border overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
+        <Table>
+          <TableHeader>
+            <TableRow>
               {appointmentFields.map(field => (
-                <th key={field.name} className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  {field.label}
-                </th>
+                <TableHead key={field.name}>{field.label}</TableHead>
               ))}
-              <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+              <TableHead>Status</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {appointments.map((item: any) => (
-              <tr key={item.id}>
+              <TableRow key={item.id}>
                 {appointmentFields.map(field => (
-                  <td key={field.name} className="px-4 py-2 whitespace-nowrap">
+                  <TableCell key={field.name}>
                     {field.type === "image" && item[field.name] ? (
                       <img src={item[field.name]} alt="preview" className="w-16 h-12 object-cover rounded border" />
                     ) : field.type === "date" && item[field.name] ? (
@@ -89,9 +88,9 @@ export default function AppointmentsPage() {
                     ) : (
                       item[field.name] ?? "—"
                     )}
-                  </td>
+                  </TableCell>
                 ))}
-                <td className="px-4 py-2 whitespace-nowrap">
+                <TableCell>
                   <Select value={item.status || "Pending"} onValueChange={val => handleStatusChange(item.id, val)}>
                     <SelectTrigger className="w-32">
                       <SelectValue placeholder="Select status" />
@@ -102,11 +101,11 @@ export default function AppointmentsPage() {
                       <SelectItem value="Cancelled">Cancelled</SelectItem>
                     </SelectContent>
                   </Select>
-                </td>
-              </tr>
+                </TableCell>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
       <Dialog open={confirmDialog.open} onOpenChange={open => setConfirmDialog({ ...confirmDialog, open })}>
         <DialogContent>
