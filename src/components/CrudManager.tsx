@@ -477,6 +477,12 @@ export function CrudManager<T>({
                               .filter(([, v]) => v && typeof v !== 'object')
                               .map(([k, v]) => `${k}: ${v}`)
                               .join(", ")
+                        : field.name === "location"
+                          ? [
+                              item[field.name].city ? `City: ${item[field.name].city}` : null,
+                              item[field.name].latitude ? `Latitude: ${item[field.name].latitude}` : null,
+                              item[field.name].longitude ? `Longitude: ${item[field.name].longitude}` : null
+                            ].filter(Boolean).join(", ")
                           : "[object]"
                       ) : typeof item[field.name] === "object" && item[field.name] !== null ? (
                         JSON.stringify(item[field.name])
