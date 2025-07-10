@@ -400,26 +400,28 @@ export function CrudManager<T>({
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="p-6 space-y-6">
       <div className="flex justify-between items-center sm:flex-row flex-col gap-4">
         <h1 className="text-2xl font-bold">{resourceName} Management</h1>
-        <Dialog open={isCreateDialogOpen} onOpenChange={open => { setIsCreateDialogOpen(open); if (!open) resetCreateForm(); }}>
-          <Button onClick={() => setIsCreateDialogOpen(true)}>
-            <Plus className="mr-2 h-4 w-4" />Create {resourceName}
-          </Button>
-          <DialogContent className="sm:max-w-[900px] overflow-x-auto">
-            <DialogHeader>
-              <DialogTitle>Create New {resourceName}</DialogTitle>
-              <DialogDescription>
-                Fill in the details for your new {resourceName.toLowerCase()}. Click create when you're done.
-              </DialogDescription>
-            </DialogHeader>
-            {renderFormFields(newForm, setNewForm)}
-            <DialogFooter>
-              <Button variant="outline" onClick={() => { setIsCreateDialogOpen(false); resetCreateForm(); }}>Cancel</Button>
-              <Button onClick={handleCreate} disabled={isSubmitting}>
-                {isSubmitting ? (<><Loader2 className="mr-2 h-4 w-4 animate-spin" />Creating...</>) : 'Create'}
-              </Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
+        {resourceName !== "Rashi" && resourceName !== "Panchang" && (
+          <Dialog open={isCreateDialogOpen} onOpenChange={open => { setIsCreateDialogOpen(open); if (!open) resetCreateForm(); }}>
+            <Button onClick={() => setIsCreateDialogOpen(true)}>
+              <Plus className="mr-2 h-4 w-4" />Create {resourceName}
+            </Button>
+            <DialogContent className="sm:max-w-[900px] overflow-x-auto">
+              <DialogHeader>
+                <DialogTitle>Create New {resourceName}</DialogTitle>
+                <DialogDescription>
+                  Fill in the details for your new {resourceName.toLowerCase()}. Click create when you're done.
+                </DialogDescription>
+              </DialogHeader>
+              {renderFormFields(newForm, setNewForm)}
+              <DialogFooter>
+                <Button variant="outline" onClick={() => { setIsCreateDialogOpen(false); resetCreateForm(); }}>Cancel</Button>
+                <Button onClick={handleCreate} disabled={isSubmitting}>
+                  {isSubmitting ? (<><Loader2 className="mr-2 h-4 w-4 animate-spin" />Creating...</>) : 'Create'}
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        )}
       </div>
       <div className="relative max-w-sm">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
