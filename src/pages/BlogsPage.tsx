@@ -41,6 +41,20 @@ export default function BlogsPage() {
       }}
       onEdit={(id, form) => {
         const { createdAt, ...rest } = form;
+        if (form.type === 'image' && form.blogImageFile) {
+          rest.blogImageFile = form.blogImageFile;
+          delete rest.videoFile;
+          delete rest.videoUrl;
+        } else if (form.type === 'video' && form.videoFile) {
+          rest.videoFile = form.videoFile;
+          delete rest.blogImageFile;
+          delete rest.videoUrl;
+        } else if (form.type === 'video' && !form.videoFile) {
+          delete rest.blogImageFile;
+        } else if (form.type === 'image' && !form.blogImageFile) {
+          delete rest.videoFile;
+          delete rest.videoUrl;
+        }
         return dispatch(updateBlog({ id, form: rest }) as any).then(() => dispatch(fetchBlogs() as any));
       }}
       onDelete={id => dispatch(deleteBlog(id) as any)}
