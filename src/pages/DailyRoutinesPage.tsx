@@ -69,7 +69,7 @@ export default function DailyRoutinesPage() {
   }, [dailyRoutines]);
 
   if (!selectedRoutine) {
-    return <div className="p-6">No daily routine found.</div>;
+    return <div className="p-2 sm:p-6">No daily routine found.</div>;
   }
 
   // CRUD handlers for rashis
@@ -105,7 +105,7 @@ export default function DailyRoutinesPage() {
   const rashisWithId = (selectedRoutine.rashis || []).map((r: any, idx: number) => ({ ...r, id: String(idx) }));
 
   return (
-    <div className="p-6 space-y-8">
+    <div className="p-2 sm:p-6 space-y-8">
       <h1 className="text-2xl font-bold mb-4">Daily Routine: {selectedRoutine.title} ({selectedRoutine.date})</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>

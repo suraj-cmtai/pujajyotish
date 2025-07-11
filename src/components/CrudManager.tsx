@@ -131,7 +131,7 @@ export function CrudManager<T>({
   };
 
   const renderFormFields = (formState: any, setFormState: any) => (
-    <div className="grid gap-4 py-4 max-h-[70vh] overflow-y-auto pr-4 overflow-x-auto">
+    <div className="grid gap-4 py-4 px-1 max-h-[60vh] overflow-x-auto overflow-y-auto w-full min-w-0">
       {fields.map(field => {
         // Special case for Blog: show blogImage only if type==='image', videoUrl only if type==='video'
         if (resourceName === "Blog") {
@@ -397,25 +397,29 @@ export function CrudManager<T>({
   );
 
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="p-6 space-y-6">
-      <div className="flex justify-between items-center sm:flex-row flex-col gap-4">
-        <h1 className="text-2xl font-bold">{resourceName} Management</h1>
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="p-2 sm:p-6 space-y-6 w-full max-w-[90vw]">
+      <div className="flex flex-col sm:flex-row justify-start items-start gap-4 w-full">
+        <h1 className="text-2xl font-bold w-full text-left">{resourceName} Management</h1>
         {resourceName !== "Rashi" && resourceName !== "Panchang" && (
           <Dialog open={isCreateDialogOpen} onOpenChange={open => { setIsCreateDialogOpen(open); if (!open) resetCreateForm(); }}>
-            <Button onClick={() => setIsCreateDialogOpen(true)}>
+            <div className="flex justify-start w-full">
+              <Button onClick={() => setIsCreateDialogOpen(true)} className="w-full max-w-xs text-left">
               <Plus className="mr-2 h-4 w-4" />Create {resourceName}
             </Button>
-            <DialogContent className="sm:max-w-[900px] overflow-x-auto">
+            </div>
+            <DialogContent className="w-full max-w-[98vw] p-2 sm:max-w-[900px] overflow-x-auto">
               <DialogHeader>
-                <DialogTitle>Create New {resourceName}</DialogTitle>
-                <DialogDescription>
+                <DialogTitle className="text-left">Create New {resourceName}</DialogTitle>
+                <DialogDescription className="text-left">
                   Fill in the details for your new {resourceName.toLowerCase()}. Click create when you're done.
                 </DialogDescription>
               </DialogHeader>
+              <div className="w-full overflow-x-auto px-2">
               {renderFormFields(newForm, setNewForm)}
-              <DialogFooter>
-                <Button variant="outline" onClick={() => { setIsCreateDialogOpen(false); resetCreateForm(); }}>Cancel</Button>
-                <Button onClick={handleCreate} disabled={isSubmitting}>
+              </div>
+              <DialogFooter className="flex flex-col sm:flex-row justify-start items-start gap-2 w-full">
+                <Button variant="outline" onClick={() => { setIsCreateDialogOpen(false); resetCreateForm(); }} className="w-full sm:w-auto">Cancel</Button>
+                <Button onClick={handleCreate} disabled={isSubmitting} className="w-full sm:w-auto">
                   {isSubmitting ? (<><Loader2 className="mr-2 h-4 w-4 animate-spin" />Creating...</>) : 'Create'}
                 </Button>
               </DialogFooter>
@@ -423,18 +427,23 @@ export function CrudManager<T>({
           </Dialog>
         )}
       </div>
-      <div className="relative max-w-sm">
+      <div className="relative w-full flex justify-start">
+        <div className="w-full max-w-md flex justify-start">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-        <Input placeholder={`Search ${resourceName.toLowerCase()}s...`} value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-9" />
+          <Input placeholder={`Search ${resourceName.toLowerCase()}s...`} value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-9 w-full text-left" />
+        </div>
       </div>
-      <motion.div layout className="rounded-md border">
-        <Table>
+      <motion.div layout className="rounded-md border w-full px-2">
+        <div className="overflow-x-auto overflow-y-auto max-h-[80vh] w-full max-w-screen relative">
+          <Table className="min-w-[600px] w-full">
           <TableHeader>
             <TableRow>
               {fields.map(field => (
-                <TableHead key={field.name}>{field.label}</TableHead>
+                <TableHead key={field.name} className="sticky top-0 z-10 bg-white">
+                  {field.label}
+                </TableHead>
               ))}
-              <TableHead className="text-right">Actions</TableHead>
+              <TableHead className="sticky top-0 z-10 bg-white text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -454,7 +463,7 @@ export function CrudManager<T>({
               filteredData.map((item: any) => (
                 <motion.tr key={item.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} layout className="group">
                   {fields.map(field => (
-                    <TableCell key={field.name}>
+                      <TableCell key={field.name} className="text-center px-2 py-1">
                       {field.type === "image" && item[field.name] ? (
                         <img src={item[field.name]} alt="preview" className="w-16 h-12 object-cover rounded border" />
                       ) : field.name === "videoUrl" && item[field.name] ? (
@@ -495,7 +504,7 @@ export function CrudManager<T>({
                       )}
                     </TableCell>
                   ))}
-                  <TableCell className="text-right">
+                    <TableCell className="text-right px-2 py-1">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <Button variant="ghost" className="h-8 w-8 p-0">
@@ -518,18 +527,21 @@ export function CrudManager<T>({
             )}
           </TableBody>
         </Table>
+        </div>
       </motion.div>
       {/* Edit Dialog */}
       <Dialog open={isEditDialogOpen} onOpenChange={open => { setIsEditDialogOpen(open); if (!open) resetEditForm(); }}>
-        <DialogContent className="sm:max-w-[625px]">
+        <DialogContent className="w-full max-w-[98vw] p-2 sm:max-w-[625px] overflow-x-auto">
           <DialogHeader>
-            <DialogTitle>Edit {resourceName}</DialogTitle>
-            <DialogDescription>Make changes to your {resourceName.toLowerCase()}. Click save when you're done.</DialogDescription>
+            <DialogTitle className="text-left">Edit {resourceName}</DialogTitle>
+            <DialogDescription className="text-left">Make changes to your {resourceName.toLowerCase()}. Click save when you're done.</DialogDescription>
           </DialogHeader>
+          <div className="w-full overflow-x-auto px-2">
           {editForm && renderFormFields(editForm, setEditForm)}
-          <DialogFooter>
-            <Button variant="outline" onClick={() => { setIsEditDialogOpen(false); resetEditForm(); }}>Cancel</Button>
-            <Button onClick={handleEdit} disabled={isSubmitting}>
+          </div>
+          <DialogFooter className="flex flex-col sm:flex-row justify-start items-start gap-2 w-full">
+            <Button variant="outline" onClick={() => { setIsEditDialogOpen(false); resetEditForm(); }} className="w-full sm:w-auto">Cancel</Button>
+            <Button onClick={handleEdit} disabled={isSubmitting} className="w-full sm:w-auto">
               {isSubmitting ? (<><Loader2 className="mr-2 h-4 w-4 animate-spin" />Saving...</>) : 'Save Changes'}
             </Button>
           </DialogFooter>
