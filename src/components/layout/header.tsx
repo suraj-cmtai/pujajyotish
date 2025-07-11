@@ -98,14 +98,16 @@ const Header = ({ title, onMenuClick, className }: HeaderProps) => {
         {/* Left Section */}
         <div className="flex items-center space-x-4">
           {/* Mobile Menu Button */}
-          {onMenuClick && (<Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={onMenuClick}
-          >
-            <Menu className="h-5 w-5" />
-          </Button>)}
+          {onMenuClick && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden"
+              onClick={onMenuClick}
+            >
+              <Menu className="h-5 w-5" />
+            </Button>
+          )}
           {/* Title */}
           <motion.div
             initial={{ opacity: 0, x: -10 }}

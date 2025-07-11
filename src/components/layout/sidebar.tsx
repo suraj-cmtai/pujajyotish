@@ -44,6 +44,11 @@ interface SidebarProps {
   isMobile?: boolean;
 }
 
+const mobileDrawerVariants = {
+  hidden: { x: -300, opacity: 0, transition: { duration: 0.25, ease: "easeInOut" as const } },
+  visible: { x: 0, opacity: 1, transition: { duration: 0.3, ease: "easeInOut" as const } },
+};
+
 const Sidebar = ({ onClose, isMobile = false }: SidebarProps) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -239,7 +244,23 @@ const Sidebar = ({ onClose, isMobile = false }: SidebarProps) => {
       </div>
     </motion.div>
   );
-  return <SidebarContent />;
+
+  if (isMobile) {
+    // Render as sliding drawer for mobile
+    return (
+      <motion.div
+        className="fixed inset-y-0 left-0 z-50 w-64 max-w-full h-full bg-background border-r shadow-lg"
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+        variants={mobileDrawerVariants}
+      >
+        {SidebarContent()}
+      </motion.div>
+    );
+  }
+  // Desktop sidebar
+  return SidebarContent();
 };
 
 export default Sidebar;
