@@ -32,7 +32,7 @@ const DashboardLayout = () => {
       )}
       <div className="flex-1 flex flex-col">
         <Header title="Dashboard" onMenuClick={() => setSidebarOpen(true)} />
-        <main className="flex-1 p-2 flex justify-center items-center">
+        <main className="flex-1 p-2 flex justify-center items-start">
           <Outlet />
         </main>
       </div>
