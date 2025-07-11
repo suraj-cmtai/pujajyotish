@@ -83,6 +83,7 @@ const Header = ({ title, onMenuClick, className }: HeaderProps) => {
     document.addEventListener("keydown", down)
     return () => document.removeEventListener("keydown", down)
   }, [])
+  
 
   return (
     <motion.header
@@ -190,9 +191,9 @@ const Header = ({ title, onMenuClick, className }: HeaderProps) => {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="relative h-9 w-9 rounded-full">
                 <Avatar className="h-9 w-9">
-                  <AvatarImage src="/avatar.png" alt="User" />
+                  <AvatarImage src="/logo.png" alt="User" />
                   <AvatarFallback className="bg-gradient-to-br from-blue-600 to-purple-600 text-white">
-                    SA
+                    PJ
                   </AvatarFallback>
                 </Avatar>
               </Button>
@@ -204,12 +205,15 @@ const Header = ({ title, onMenuClick, className }: HeaderProps) => {
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-red-600 focus:text-red-600 cursor-pointer">
-                <span onClick={() => {
+              <DropdownMenuItem
+                className="text-red-600 focus:text-red-600 cursor-pointer"
+                onClick={() => {
                   dispatch(logout());
                   persistor.purge();
                   navigate('/login');
-                }}>Log out</span>
+                }}
+              >
+                Log out
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

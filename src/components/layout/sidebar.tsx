@@ -101,9 +101,9 @@ const Sidebar = ({ onClose, isMobile = false }: SidebarProps) => {
               <Link to="/" className="w-8 h-8 rounded-lg flex items-center justify-center">
                 <Button variant="ghost" className="relative h-9 w-9 rounded-full">
                   <Avatar className="h-9 w-9">
-                    <AvatarImage src="/avatar.png" alt="User" />
+                    <AvatarImage src="/logo.png" alt="User" />
                     <AvatarFallback className="bg-gradient-to-br from-orange-600 to-navy-600 text-white">
-                      SA
+                      PJ
                     </AvatarFallback>
                   </Avatar>
                 </Button>
