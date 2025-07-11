@@ -208,40 +208,43 @@ const Sidebar = ({ onClose, isMobile = false }: SidebarProps) => {
               </motion.div>
             );
           })}
+          {/* Logout Button as nav item */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: links.length * 0.05 }}
+          >
+            {isCollapsed && !isMobile ? (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="w-full h-12"
+                    onClick={handleLogout}
+                  >
+                    <LogOut className="h-5 w-5" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="right">
+                  <span>Logout</span>
+                </TooltipContent>
+              </Tooltip>
+            ) : (
+              <Button
+                variant="ghost"
+                className="w-full justify-start space-x-3 mt-2"
+                onClick={handleLogout}
+              >
+                <LogOut className="h-5 w-5" />
+                <span>Logout</span>
+              </Button>
+            )}
+          </motion.div>
         </TooltipProvider>
       </nav>
       <Separator />
-      {/* Footer */}
-      <div className="p-4">
-        <TooltipProvider>
-          {isCollapsed && !isMobile ? (
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="w-full h-12"
-                  onClick={handleLogout}
-                >
-                  <LogOut className="h-5 w-5" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="right">
-                <span>Logout</span>
-              </TooltipContent>
-            </Tooltip>
-          ) : (
-            <Button
-              variant="ghost"
-              className="w-full justify-start space-x-3"
-              onClick={handleLogout}
-            >
-              <LogOut className="h-5 w-5" />
-              <span>Logout</span>
-            </Button>
-          )}
-        </TooltipProvider>
-      </div>
+      {/* Footer removed */}
     </motion.div>
   );
 

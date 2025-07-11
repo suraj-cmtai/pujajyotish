@@ -80,8 +80,8 @@ export default function AppointmentsPage() {
           />
         </div>
       </div>
-      <div className="rounded-md border w-full px-2">
-        <div className="overflow-x-auto overflow-y-auto max-h-[80vh] w-full max-w-screen relative">
+      <div className="rounded-md border w-full md:max-w-[70vw] px-2 md:max-h-[70vh] max-h-[80vh]">
+        <div className="overflow-x-auto overflow-y-auto md:max-w-[70vw] md:max-h-[70vh] max-h-[80vh] w-full max-w-screen relative">
           <Table className="min-w-[600px] w-full">
             <TableHeader>
               <TableRow>

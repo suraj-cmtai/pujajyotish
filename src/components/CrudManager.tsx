@@ -433,8 +433,8 @@ export function CrudManager<T>({
           <Input placeholder={`Search ${resourceName.toLowerCase()}s...`} value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-9 w-full text-left" />
         </div>
       </div>
-      <motion.div layout className="rounded-md border w-full px-2">
-        <div className="overflow-x-auto overflow-y-auto max-h-[80vh] w-full max-w-screen relative">
+      <motion.div layout className="rounded-md border w-full px-2 md:max-w-[70vw] md:max-h-[60vh] max-h-[80vh]">
+        <div className="overflow-x-auto overflow-y-auto md:max-w-[70vw] md:max-h-[60vh] max-h-[80vh] w-full max-w-screen relative">
           <Table className="min-w-[600px] w-full">
           <TableHeader>
             <TableRow>
