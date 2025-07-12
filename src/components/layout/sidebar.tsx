@@ -110,7 +110,7 @@ const Sidebar = ({ onClose, isMobile = false }: SidebarProps) => {
                 </Button>
               </Link>
               <div>
-                <Link to="/" className="text-lg font-bold text-primary">
+                <Link to="/dashboard" className="text-lg font-bold text-primary">
                   <span className="text-navy">Puja</span> <span className="text-orange">Jyotish</span>
                 </Link>
               </div>
