@@ -44,6 +44,7 @@ interface HeaderProps {
 
 const searchSuggestions = [
   // { label: "Users", value: "users", href: "/dashboard/users" },
+  { label: "Home", value: "home", href: "/dashboard/home" },
   { label: "Blogs", value: "blogs", href: "/dashboard/blogs" },
   // { label: "Products", value: "products", href: "/dashboard/products" },
   { label: "Purohits", value: "purohits", href: "/dashboard/purohits" },
@@ -83,7 +84,7 @@ const Header = ({ title, onMenuClick, className }: HeaderProps) => {
     document.addEventListener("keydown", down)
     return () => document.removeEventListener("keydown", down)
   }, [])
-  
+
 
   return (
     <motion.header
@@ -101,12 +102,12 @@ const Header = ({ title, onMenuClick, className }: HeaderProps) => {
           {/* Mobile Menu Button */}
           {onMenuClick && (
             <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              onClick={onMenuClick}
-            >
-              <Menu className="h-5 w-5" />
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={onMenuClick}
+          >
+            <Menu className="h-5 w-5" />
             </Button>
           )}
           {/* Title */}

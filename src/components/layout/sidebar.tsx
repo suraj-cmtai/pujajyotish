@@ -14,6 +14,7 @@ import { logout } from "@/store/authSlice";
 import { persistor } from "@/store";
 
 const links = [
+  { name: "Home", href: "/dashboard/home", icon: FileText },
   // { name: "Users", href: "/dashboard/users", icon: Users },
   { name: "Blogs", href: "/dashboard/blogs", icon: Newspaper },
   // { name: "Products", href: "/dashboard/products", icon: LayoutDashboard },
@@ -98,7 +99,7 @@ const Sidebar = ({ onClose, isMobile = false }: SidebarProps) => {
               exit={{ opacity: 0, x: -10 }}
               className="flex items-center space-x-3"
             >
-              <Link to="/" className="w-8 h-8 rounded-lg flex items-center justify-center">
+              <Link to="/dashboard" className="w-8 h-8 rounded-lg flex items-center justify-center">
                 <Button variant="ghost" className="relative h-9 w-9 rounded-full">
                   <Avatar className="h-9 w-9">
                     <AvatarImage src="/logo.png" alt="User" />

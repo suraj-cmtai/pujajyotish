@@ -11,6 +11,7 @@ import appointmentReducer from './appointmentSlice'
 import leadReducer from './leadSlice'
 import productReducer from './productSlice'
 import userReducer from './userSlice'
+import homeReducer from './homeSlice'
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   leads: leadReducer,
   products: productReducer,
   users: userReducer,
+  home: homeReducer,
 })
 
 const persistConfig = {
